@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Desafio - Quiz de Conhecimentos Gerais</h1>
+
+    <form>
+        <h3>Pergunta 1: Qual é a capital do Brasil?</h3>
+        <input type="text" id="resposta1" placeholder="Sua Resposta..." required>
+
+        <h3>Pergunta 2: Qual é o maior oceano do mundo?</h3>
+        <input type="text" id="resposta2" placeholder="Sua Resposta..." required>
+
+        <h3>Pergunta 3: Quem escreveu 'Romeu e Julieta'?</h3>
+        <input type="text" id="resposta3" placeholder="Sua Resposta..." required>
+
+        <h3>Pergunta 4: Qual o símbolo químico do ouro?</h3>
+        <input type="text" id="resposta4" placeholder="Sua Resposta..." required>
+
+        <h3>Pergunta 5: Em que ano ocorreu a independencia do Brasil?</h3>
+        <input type="text" id="resposta5" placeholder="Sua Resposta..." required>
+    </form>
+
+    <div id="resultado"></div>
+
+    <br>
+    <button type="button" onclick="verificarRespostas()">Verificar Respostas</button>
+
+    <script>
+
+        function verificarRespostas() {
+            let pontuacao = 0;
+            var resultadoDiv = document.getElementById("resultado");
+
+            // Guardar respostas em variáveis
+            let resp1 = document.getElementById('resposta1').value
+            let resp2 = document.getElementById('resposta2').value
+            let resp3 = document.getElementById('resposta3').value
+            let resp4 = document.getElementById('resposta4').value
+            let resp5 = document.getElementById('resposta5').value
+            
+            // if (reposta correta) pontuacao ++;
+
+            if (resp1 == "Brasília"){
+                pontuacao++;
+            }
+
+            if (resp2 == "Pacífico"){
+                pontuacao++;
+            }
+
+            if (resp3 == "William Shakespeare"){
+                pontuacao++;
+            }
+
+            if (resp4 == "Au"){
+                pontuacao++;
+            }
+
+            if (resp5 == "1822"){
+                pontuacao++;
+            }
+
+            resultadoDiv.innerHTML = "<h2>A sua pontuação foi: " + pontuacao + "</h2>"
+
+        }
+    
+    </script>
+
+</body>
+</html>
