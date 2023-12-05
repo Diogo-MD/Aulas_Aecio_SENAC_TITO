@@ -22,7 +22,7 @@
         <input type="text" id="resposta4" placeholder="Sua Resposta..." required>
 
         <h3>Pergunta 5: Em que ano ocorreu a independencia do Brasil?</h3>
-        <input type="text" id="resposta5" placeholder="Sua Resposta..." required>
+        <input type="number" id="resposta5" placeholder="Sua Resposta..." required>
     </form>
 
     <div id="resultado"></div>
@@ -37,35 +37,35 @@
             var resultadoDiv = document.getElementById("resultado");
 
             // Guardar respostas em variáveis
-            let resp1 = document.getElementById('resposta1').value
-            let resp2 = document.getElementById('resposta2').value
-            let resp3 = document.getElementById('resposta3').value
-            let resp4 = document.getElementById('resposta4').value
-            let resp5 = document.getElementById('resposta5').value
+            let resp1 = document.getElementById('resposta1').value.toLowerCase();
+            let resp2 = document.getElementById('resposta2').value.toLowerCase();
+            let resp3 = document.getElementById('resposta3').value.toLowerCase();
+            let resp4 = document.getElementById('resposta4').value.toLowerCase();
+            let resp5 = document.getElementById('resposta5').value;
             
             // if (reposta correta) pontuacao ++;
 
-            if (resp1 == "Brasília"){
+            if (resp1 == "brasília"){
                 pontuacao++;
             }
 
-            if (resp2 == "Pacífico"){
+            if (resp2 == "pacífico"){
                 pontuacao++;
             }
 
-            if (resp3 == "William Shakespeare"){
+            if (resp3 == "william shakespeare"){
                 pontuacao++;
             }
 
-            if (resp4 == "Au"){
+            if (resp4 == "au"){
                 pontuacao++;
             }
 
-            if (resp5 == "1822"){
+            if (resp5 == 1822){
                 pontuacao++;
             }
 
-            resultadoDiv.innerHTML = "<h2>A sua pontuação foi: " + pontuacao + "</h2>"
+            resultadoDiv.innerHTML = "<h2>A sua pontuação foi: " + pontuacao + " Pontos</h2>"
 
         }
     
