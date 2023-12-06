@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade</title>
+</head>
+<body>
+    <h1>Desafio</h1>
+
+    <p>Tempo da volta 1 (Segundos)<input type="number" id="volta1"></p>
+    <p>Tempo da volta 2 (Segundos)<input type="number" id="volta2"></p>
+    <p>Tempo da volta 3 (Segundos)<input type="number" id="volta3"></p>
+    <p>Tempo da volta 4 (Segundos)<input type="number" id="volta4"></p>
+    <p>Tempo da volta 5 (Segundos)<input type="number" id="volta5"></p>
+
+    <button onclick="calcularSeg()">Exibir Resultados</button>
+
+    <script>
+
+    let totalDeVoltas = parseFloat(prompt('Numero de voltas'))
+
+    for (let i = 0; i<totalDeVoltas; i++) {
+        document.write(`<label for="volta {i}">Tempo da Volta ${i} (Segundos: )</label>`)
+        
+    }
+
+
+        function calcularSeg(){
+            let ListaSegundos= []
+
+            ListaSegundos.push(parseFloat(document.getElementById('volta1').value))
+            ListaSegundos.push(parseFloat(document.getElementById('volta2').value))
+            ListaSegundos.push(parseFloat(document.getElementById('volta3').value))
+            ListaSegundos.push(parseFloat(document.getElementById('volta4').value))
+            ListaSegundos.push(parseFloat(document.getElementById('volta5').value))
+
+            let maiorSec = Math.max.apply(null, ListaSegundos );
+            let menorSec = Math.min.apply(null, ListaSegundos);
+
+            let soma = 0
+            
+            for (var i =0; i < ListaSegundos.length; i++){
+                soma = soma + ListaSegundos[i];
+            }
+            let media = soma / ListaSegundos.length
+
+
+            alert("Volta mais rápida: " +maiorSec+ "\nVolta mais lenta: " +menorSec+ "\nMédia de voltas: " + media )
+        }
+
+    </script>
+
+</body>
+</html>
