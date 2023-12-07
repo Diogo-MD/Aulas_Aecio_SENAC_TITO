@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios - Repetição FOR</title>
+</head>
+<body>
+    <h1>Exercicios - Repetição FOR</h1>
+
+    <script>
+
+        
+
+        for(let i = 0; i <= 10 ; i++){
+            document.write(i)
+            console.log(i)
+        }
+
+        document.write("<br><br>")
+
+        for (let i = 10; i >= 0 ; i--) {
+            document.write(i)
+        }
+
+        document.write("<br><br>")
+
+        for (let i = 1 ; i <= 5; i++) {
+            document.write("Esta é a linha N° " + i + "<br>")
+        }
+
+        // Peça ao usuario um texto e pergunte quantasvezes ele deve se repetir.
+
+        document.write("<br>")
+        let texto = prompt("Digite um texto")
+        let qtd = parseInt(prompt("Quantas vezes deseja que o texto se repita"))
+
+        for(i = 0; i <= qtd ; i++ ) {
+            document.write(`${i}ª Repetição: ${texto} <br>`)
+        }
+
+
+    </script>
+
+</body>
+</html>
