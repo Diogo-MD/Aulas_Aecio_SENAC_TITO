@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora de Média</h1>
+
+    <!-- Pergunte o total de unidades estudadas pelo aluno -->
+
+    <h2>Infomre as médias do aluno: </h2>
+
+    <!-- Estes inputs devem ser uma lista -->
+
+    <!-- <input id="nota1" type="number" placeholder="Primeira nota...">
+    <input id="nota2" type="number" placeholder="Segunda nota...">
+    <input id="nota3" type="number" placeholder="Terceira nota...">
+    <input id="nota4" type="number" placeholder="Quarta nota..."> -->
+
+
+    <script>
+
+        let unidades = parseInt(prompt("Quantas unidades"))
+        let notas = []
+
+        for (let i = 1; i <= unidades; i++){
+            document.write(`<label for="nota${i}"> ${i}ª Unidade: </label>`);
+            document.write(`<input type="number" id="nota${i}" name="nota${i}" required><br>`)
+        }
+
+        function exibirMedia() {
+
+            for (let i = 1; i <= unidades; i++ ) {
+                let nota = document.getElementById(`nota${i}`).value;
+                nota = parseInt(nota);
+                notas.push(nota);
+            }
+
+            let soma = 0
+
+            for (let i = 1; i <= unidades ; i++ ) {
+                
+                let nota = document.getElementById(`nota${i}`).value;
+                soma =  soma + parseInt(nota);
+                
+            }
+
+            console.log(soma / unidades)
+            console.log(notas)
+        }
+
+
+
+
+
+
+        // function soma() {
+        //     const unidades = 4;
+
+        //     var nota1 = parseFloat(document.getElementById("nota1").value);
+        //     var nota2 = parseFloat(document.getElementById("nota2").value);
+        //     var nota3 = parseFloat(document.getElementById("nota3").value);
+        //     var nota4 = parseFloat(document.getElementById("nota4").value);
+
+            // Deve ser uma função que recebe a lista e calcula a media
+            // var soma = nota1 + nota2 + nota3 + nota4;
+            // var media = soma / unidades;
+            // window.alert(media);
+        // }     
+    </script>
+    <br><button onclick="exibirMedia()">Exibir Média</button> 
+
+    
+</body>
+</html>
