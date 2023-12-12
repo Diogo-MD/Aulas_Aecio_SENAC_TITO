@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade</title>
+</head>
+
+<body>
+
+    <h1>Lista de Compras</h1>
+
+
+
+    <input type="text" name="" id="itemAdcionar"><button onclick="adcionarItem()">Adcionar Item</button><br>
+
+    <ul>
+        <div id="listaDeComprasDIV">
+            
+        </div>
+    </ul>
+
+    <!-- Passo 1 Input para receber produto -->
+
+    <!-- Passo 2 Criar uma lista vazia -->
+
+    <!-- Passo 3 Criar a função para adcionar item a lista -->
+
+    <!-- Passo 4 Na função de adcionar colocar btn de remover da lista -->
+
+    <!-- Passo 5 Adcionar total de itens -->
+
+    <script>
+
+    let lista = []
+
+        function adcionarItem(){
+            let item = document.getElementById("itemAdcionar").value;
+            let lista = document.getElementById("listaDeComprasDIV").innerHTML = `<li>${item}</li>`
+        }
+
+    </script>
+
+
+</body>
+
+</html>

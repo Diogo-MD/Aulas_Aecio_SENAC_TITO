@@ -8,38 +8,43 @@
 <body>
     <h1>Atividade - Funções </h1>
 
-    <h2> Crie uma função que sempre retonre o texto "obrigado!", para tornar suas frases mais educadas.</h2>
 
-    <button onclick="ehPar(numero)">Exibir Nomes</button>
-
-    <input type="number" name="" id="numero">
+    <button onclick=""><img src="" alt=""></button>  
 
     <script>
 
 
     // Função que recebe um número e informa se o mesmo é par
 
-    numero = document.getElementById("numero")
-    function ehPar (numero) {
-        if(numero % 2 == 0){
-            return true   
+    // numero = document.getElementById("numero")
+    // function ehPar (numero) {
+    //     if(numero % 2 == 0){
+    //         return true   
+    //     }
+    //     return false
+    // }
+
+
+
+    // Função que recebe um texto e retorna o texto dentro do limite de 10 caracteres
+
+
+        let novoTexto = "lorem ipsum bla bla bla"
+        // let textoCortado = texto.substring(0, 10);
+
+        function definirTexto(novoTexto) {
+
+            let novoTexto = (novoTexto.length > 10) ? "Seu texto é maior que 10 caractéres e ficou assim: " + novoTexto.substring(0, 10) : "Seu texto é menor que 10 caractéres e ficou assim: " + novoTexto
+
+            
+            // let textoCortado = ""
+            // if(novoTexto.length > 10) {
+            //     textoCortado = ("Seu texto ultrapassou o limite de 10 caractéres e ficou desta forma: " + novoTexto.substring(0,10));
+            // }
+            // return textoCortado
         }
-        return false
-    }
 
-
-
-    // Função que recebe uma lista de números e retorna apenas os impares
-
-
-
-
-
-
-
-
-
-
+        console.log(definirTexto(novoTexto))
 
 
 
