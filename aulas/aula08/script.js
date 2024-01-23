@@ -6,6 +6,7 @@ class Produto {
         this.vencimento = vencimento;
     }
 
+    // Verifica se o valor inserido é maior ou igual a 2024
     verificarVencimento() {
         return !(parseInt(this.vencimento) >= 2024);
     }
@@ -25,6 +26,7 @@ while (cadastrarNovoProduto) {
     // Instância de um objeto a partir de uma classe
     let produto = new Produto(nome, peso, preco, vencimento);
 
+    // Alerta caso o valor inserido no prompt seja menor que (2024)
     if (produto.verificarVencimento()) {
         alert("Você acabou de cadastrar um produto vencido!")
     }
