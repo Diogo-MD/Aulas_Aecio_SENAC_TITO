@@ -21,18 +21,18 @@ class materialBibliografico {
         } else {
             return false; // Material já devolvido previamente
         }
-
     }
 
-    // Jeito certo mas não o mais semântico ABAIXO
-    // realizarDevolucao() {
-    //     if (this.disponivel) {
-    //         return false; // Material já devolvido previamente 
-    //     } else {
-    //         return true; // Devolução realizada com sucesso
-    //     }
-    // }
+    renomearAutor(novoNome) {
+        if (novoNome == "") {
+            return alert("Não pode cadastrar nome vazio")
+        }
+        this.autor = novoNome;
+    }
 
+    toString() {
+        return `${this.titulo} - ${this.autor}`;
+    }
 }
 
 class livro extends materialBibliografico {
@@ -41,12 +41,12 @@ class livro extends materialBibliografico {
         this.genero = genero;
     }
 
-    renomearAutor(novoNome) {
-        this.autor = novoNome;
-    }
-
     alternarGenero(novoGenero) {
         this.genero = novoGenero
+    }
+
+    toString() {
+        return `${super.toString()} - ${this.genero}`;
     }
 }
 
@@ -54,10 +54,6 @@ class revista extends materialBibliografico {
     constructor(titulo, autor, categoria) {
         super(titulo, autor);
         this.categoria = categoria;
-    }
-
-    renomearAutor(novoNome) {
-        this.autor = novoNome;
     }
 }
 
@@ -107,3 +103,6 @@ for (let i = 0; i < livros.length; i++) {
     option.text = livro.titulo;
     selectLivros.add(option);
 }
+
+console.log(livros[0].toString());
+console.log(livros[3].toString());  
