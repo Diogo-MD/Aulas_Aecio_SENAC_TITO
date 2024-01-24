@@ -25,13 +25,13 @@ class materialBibliografico {
     }
 
     // Jeito certo mas não o mais semântico ABAIXO
-    realizarDevolucao() {
-        if (this.disponivel) {
-            return false; // Material já devolvido previamente 
-        } else {
-            return true; // Devolução realizada com sucesso
-        }
-    }
+    // realizarDevolucao() {
+    //     if (this.disponivel) {
+    //         return false; // Material já devolvido previamente 
+    //     } else {
+    //         return true; // Devolução realizada com sucesso
+    //     }
+    // }
 
 }
 
@@ -50,8 +50,30 @@ class revista extends materialBibliografico {
 }
 
 function realizarAcao(acao) {
-    
+    const selectLivros = document.getElementById("livros");
+    const selectedIndex = selectLivros.selectedIndex;
+
+    if (selectedIndex === 0) {
+        alert("Por favor, Selecione um livro!")
+        return;
+    }   
+
+    const livroSelecionado = livros[selectedIndex - 1];
+
+    if (acao === 'emprestimo') {
+        const emprestimoSucesso = livroSelecionado.realizarEmprestimo();
+        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${emprestimoSucesso? 'Sucesso' : 'Material já emprestado'}`)
+    } else if (acao === 'devolucao') {
+        const devolucaoSucesso = livroSelecionado.realizarDevolucao();
+        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${devolucaoSucesso? 'Sucesso' : 'Material já devolvido'}`)
+    }
 }
+
+function exibirResultado (mensagem) {
+    const resultadoDiv = document.getElementById("resultado")
+    resultadoDiv.innerHTML += `<p>${mensagem}</p>`
+}
+
 
 
 
@@ -68,7 +90,7 @@ const selectLivros = document.getElementById("livros");
 for (let i = 0; i < livros.length; i++) {
     const livro = livros[i];
     const option = document.createElement("option");
-    // Adciona 1 para evitar o valor 0 que representa o selected hidden "Selecione um livro"
+    // Adiciona 1 para evitar o valor 0 que representa o selected hidden "Selecione um livro"
     option.value = i + 1;
     option.text = livro.titulo;
     selectLivros.add(option);
