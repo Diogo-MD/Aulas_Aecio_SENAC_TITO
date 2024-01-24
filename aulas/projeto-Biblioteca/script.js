@@ -2,12 +2,12 @@ class materialBibliografico {
     constructor(titulo, autor) {
         this.titulo = titulo;
         this.autor = autor;
-        this.disponivel = true;
+        this._disponivel = true;
     }
 
     realizarEmprestimo() {
-        if (this.disponivel) {
-            this.disponivel = false;
+        if (this._disponivel) {
+            this._disponivel = false;
             return true; // Empréstimo realizado com sucesso
         } else {
             return false; // Material já emprestado
@@ -15,8 +15,8 @@ class materialBibliografico {
     }
 
     realizarDevolucao() {
-        if (this.disponivel == false) {
-            this.disponivel = true;
+        if (this._disponivel == false) {
+            this._disponivel = true;
             return true; // Devolução realizada com sucesso
         } else {
             return false; // Material já devolvido previamente
@@ -40,12 +40,24 @@ class livro extends materialBibliografico {
         super(titulo, autor);
         this.genero = genero;
     }
+
+    renomearAutor(novoNome) {
+        this.autor = novoNome;
+    }
+
+    alternarGenero(novoGenero) {
+        this.genero = novoGenero
+    }
 }
 
 class revista extends materialBibliografico {
     constructor(titulo, autor, categoria) {
         super(titulo, autor);
         this.categoria = categoria;
+    }
+
+    renomearAutor(novoNome) {
+        this.autor = novoNome;
     }
 }
 
@@ -56,20 +68,20 @@ function realizarAcao(acao) {
     if (selectedIndex === 0) {
         alert("Por favor, Selecione um livro!")
         return;
-    }   
+    }
 
     const livroSelecionado = livros[selectedIndex - 1];
 
     if (acao === 'emprestimo') {
         const emprestimoSucesso = livroSelecionado.realizarEmprestimo();
-        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${emprestimoSucesso? 'Sucesso' : 'Material já emprestado'}`)
+        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${emprestimoSucesso ? 'Sucesso' : 'Material já emprestado'}`)
     } else if (acao === 'devolucao') {
         const devolucaoSucesso = livroSelecionado.realizarDevolucao();
-        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${devolucaoSucesso? 'Sucesso' : 'Material já devolvido'}`)
+        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${devolucaoSucesso ? 'Sucesso' : 'Material já devolvido'}`)
     }
 }
 
-function exibirResultado (mensagem) {
+function exibirResultado(mensagem) {
     const resultadoDiv = document.getElementById("resultado")
     resultadoDiv.innerHTML += `<p>${mensagem}</p>`
 }
