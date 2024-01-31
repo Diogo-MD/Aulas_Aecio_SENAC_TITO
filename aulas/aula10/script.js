@@ -1,20 +1,19 @@
-console.log("Olá Aula 10!");
-
-/* Parte 1: Crie uma classe Personagem. O personagem deverá ter:
-NOME, VIDA, ATAQUE, DEFESA, VIVO(ou morto), POSICAO (numero inteiro)
-lembre de criar o método construtor
+/*
+Parte 1: Crie uma classe Personagem. O personagem deverá ter:
+nome, vida, ataque, defesa, vivo (ou morto), posicao (numero inteiro)
+lembre de criar o método construtor 
 
 Parte 2: Crie a função/método morrer
-    - Propriedade "vivo" se torna false, e console.log ("morreu!")
+    - propriedade "vivo" se torna false, e console.log("morreu")
 Crie a função tomarDano
     - tomar dano recebe um parametro, que é o valor do dano
     - diminui os pontos de vida do personagem, com base no dano tomado
-    - verifica se o dano for maior que os pontos de vida, personagem morre
+    - verifica, se o dano for maior que os pontos de vida, personagem morre
     - se os pontos de vida forem menor ou igual a zero, personagem morre
     - ao morrer, personagem continua com 0 pontos de vida
     - o personagem só pode tomar dano se estiver vivo
 
-    Crie a função atacar
+Crie a função atacar
     - atacar, recebe como parametro um personaem/inimigo
     - so pode atacar alguém com vida
     - exibe o console.log informando qual a força do ataque e inimigo atacado
@@ -75,8 +74,34 @@ class Personagem {
     }
 }
 
-let personagem1 = new Personagem("Arthur", 10, 12, 100, 1, true);
-let personagem2 = new Personagem("Gendalf", 2, 8, 85, 1);
+class Arqueiro extends Personagem {
+    constructor(nome, ataque, defesa, vida, posicao, vivo = true,) {
+        super(nome, ataque, defesa, vida, posicao, vivo)
+    }
+}
+
+class Guerreiro extends Personagem {
+    constructor(nome, ataque, defesa, vida, posicao, vivo = true, escudo) {
+        super(nome, ataque, defesa, vida, posicao, vivo,)
+        this.escudo = escudo
+    }
+    tomarDano(quantidade) {
+        console.log(`${this.nome} sofreu ${quantidade} de dano, mas defendeu ${this.escudo} com o escudo`)
+        quantidade = quantidade - this.escudo
+        super.tomarDano(quantidade)
+    }
+}
+
+class Mago extends Personagem {
+    constructor(nome, ataque, defesa, vida, posicao, vivo = true,) {
+        super(nome, ataque, defesa, vida, posicao, vivo)
+    }
+
+}
+
+let personagem1 = new Guerreiro("Arthur", 10, 12, 100, 1, true, 5);
+let personagem2 = new Mago("Gendalf", 10, 8, 85, 1);
+
 
 console.log(personagem1);
 console.log(personagem2);
