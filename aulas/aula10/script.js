@@ -22,6 +22,23 @@ Exercício:
     - Crie um limite de vida máxima para o personagem
     - Crie uma função de recuperar vida que recebe um total de pontos para recuperar
     - A recuperação de via não pode fazer o personaem ir além da vida máxima
+
+Parte 3: Crie a herança
+    - Crie as classes Arqueiro, Guerreiro e Mago
+    - Todas as 3 classes herdam de personagem
+
+Alterações do Guerreiro:
+    - Acrescente a propriedade "escudo" na classe Guerreiro.
+    - A função tomarDano do Guerreiro deve proteger seus pontos de vida,
+    abatendo o dano sofrido dos pontos do seu escudo.    
+    
+    - Acrescente a sobrescrita da função atacar, verificando a posição do inimigo
+    - Se o inimigo estiver a mais de 1 de distância, o guerreiro não pode atacar.
+
+Alterações do Arqueiro:
+    - O arqueiro só pode atacar se a distancia dele para o oponente for maior do que 3.
+    - O arqueiro tem um totalDeFlechas.
+    - O arqueiro só pode atacar se o totla de flechas for maior que 0
 */
 
 class Personagem {
@@ -97,7 +114,7 @@ class Guerreiro extends Personagem {
 
     atacar(inimigo) {
         if ((this.posicao - inimigo.posicao) <= 1) {
-            
+
         }
     }
 }
