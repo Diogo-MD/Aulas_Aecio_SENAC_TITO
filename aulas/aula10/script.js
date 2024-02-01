@@ -39,6 +39,9 @@ Alterações do Arqueiro:
     - O arqueiro só pode atacar se a distancia dele para o oponente for maior do que 3.
     - O arqueiro tem um totalDeFlechas.
     - O arqueiro só pode atacar se o totla de flechas for maior que 0
+
+    - Crie a função recarregarFlecha, que recebe por parametro a quantidade a recarregar
+    - A função deve retornar o total de flechas recarregadas.
 */
 
 class Personagem {
@@ -89,6 +92,8 @@ class Personagem {
 
         console.log(`${this.nome} recuperou a vida de ${personagem.nome} um total de ${vidaRecebida}, ficando com ${personagem.vida} de vida`);
     }
+
+    
 }
 
 class Arqueiro extends Personagem {
@@ -107,6 +112,13 @@ class Arqueiro extends Personagem {
             console.log(`${this.nome} não pode atacar ${inimigo.nome} pois estão próximos ${this.posicao} - ${inimigo.posicao}`);
         }
     }
+
+    recarregarFlechas(quantidade){
+        persoArqueiro.totalDeFlechas += quantidade
+        console.log(`${this.nome} recarregou um total de ${quantidade} flechas e ficou com ${this.totalDeFlechas} flechas`)
+    }
+
+
 }
 
 class Guerreiro extends Personagem {
@@ -151,3 +163,4 @@ let persoArqueiro2 = new Arqueiro("Robin Hood", 15, 9, 60, 11, true, 8);
 console.log(persoArqueiro.atacar(persoArqueiro2));
 console.log(persoArqueiro.atacar(persoArqueiro2));
 console.log(persoArqueiro.atacar(persoArqueiro2));
+console.log(persoArqueiro.recarregarFlechas(5));
