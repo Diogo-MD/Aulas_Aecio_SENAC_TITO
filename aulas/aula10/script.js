@@ -42,6 +42,12 @@ Alterações do Arqueiro:
 
     - Crie a função recarregarFlecha, que recebe por parametro a quantidade a recarregar
     - A função deve retornar o total de flechas recarregadas.
+
+    Alterações do Mago:
+    - O mago precisa de pontos de magia para atacar.
+    - Os pontos de magia do mago são inicalmente metade dos seus pontos de vida
+    - Ao atacar, o mago gasta 2 pontos de magia.
+    - Caso não haja mais pontos de magia, o mago perde 4 pontos de vida ao atacar.
 */
 
 class Personagem {
@@ -145,20 +151,50 @@ class Guerreiro extends Personagem {
 
 
 class Mago extends Personagem {
-    constructor(nome, ataque, defesa, vida, posicao, vivo = true,) {
+    constructor(nome, ataque, defesa, vida, posicao, vivo = true, pontosDeMagia) {
         super(nome, ataque, defesa, vida, posicao, vivo);
+        this.pontosDeMagia = (this.vida / 2)
+    }
+
+    atacar(inimigo) {
+        distanciaPermitida = (Math.abs(this.posicao - inimigo.posicao) > 1 && Math.abs(this.posicao - inimigo.posicao) < 6);
+        
+        if (this.pontosDeMagia > 0 && distanciaPermitida) {
+            super.atacar(inimigo);
+            this.pontosDeMagia -= 2;
+        } else if (!(this.pontosDeMagia > 0) && distanciaPermitida) {
+            this.vida -= 4;
+            console.log(`${this.nome} está sem pontos de magia para atacar e foi reduzido 4 de vida, e ficou com ${this.vida}`);
+        } else if (this.pontosDeMagia > 0 && !distanciaPermitida) {
+            console.log(`${this.nome} não pode atacar ${inimigo.nome} pois não estão nas posições permitidas ${this.posicao} - ${inimigo.posicao}`);
+        }
     }
 }
 
 let persoGuerreiro = new Guerreiro("Aragorn", 10, 12, 100, 5, true, 5);
-let persoMago = new Mago("Gendalf", 12, 8, 85, 2);
+let persoMago = new Mago("Gendalf", 2, 9, 60, 10, true, 2);
 let persoArqueiro = new Arqueiro("Legolas", 18, 9, 60, 15, true, 2);
 let persoArqueiro2 = new Arqueiro("Robin Hood", 15, 9, 60, 11, true, 8);
 
 // console.log(persoGuerreiro.atacar(persoMago));
 // console.log(persoMago.atacar(persoGuerreiro));
 
-console.log(persoArqueiro.atacar(persoArqueiro2));
-console.log(persoArqueiro.atacar(persoArqueiro2));
-console.log(persoArqueiro.atacar(persoArqueiro2));
-console.log(`Total de flechas do ${persoArqueiro.nome} agora é ${persoArqueiro.recarregarFlecha(5)}`);
+// console.log(persoArqueiro.atacar(persoArqueiro2));
+// console.log(persoArqueiro.atacar(persoArqueiro2));
+// console.log(persoArqueiro.atacar(persoArqueiro2));
+// console.log(`Total de flechas do ${persoArqueiro.nome} agora é ${persoArqueiro.recarregarFlecha(5)}`);
+
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
+console.log(persoMago.atacar(persoArqueiro));
