@@ -51,14 +51,21 @@ function cadastrarVeiculo() {
     veiculos.push(Veiculo)
 
     // Atualiza a exibição
-    console.log(veiculos);
-    
+    exibirVeiculos();
+
     // Limpa os campos do formulário
-    document.getElementById("veiculoForm").reset()
+    document.getElementById("veiculoForm").reset();
 }
 
-// veiculos.push(new veiculo("Fiat", "Uno", 60000, "Branco", 16,90,"www.url.com"));
-// veiculos.push(new veiculo("fiat", "palio", 90000, "vermelho", 14, 90, "www.url88.com"));
-// veiculos.push(new veiculo("chrevrolet", "cruze", 120000, "amarelo", 11, 90, "www.url.com"));
+function exibirVeiculos() {
+    const veiculosList = document.getElementById("veiculosList");
 
-// console.log(veiculos)
+    // Limpar a lista antes de exibir os veículos
+    veiculosList.innerHTML = "";
+
+    for (let i = 0; i < veiculos.length; i++) {
+        const veiculoItem = document.createElement("li");
+        veiculoItem.innerHTML = veiculos[i].modelo;
+        veiculosList.appendChild(veiculoItem);
+    }
+}
