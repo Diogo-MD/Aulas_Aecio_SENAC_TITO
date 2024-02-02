@@ -38,14 +38,23 @@ function cadastrarVeiculo() {
     // Recebimento de valores do HTML
     const marca = document.getElementById("marca").value;
     const modelo = document.getElementById("modelo").value;
-    const preco = document.getElementById("preco").value;
+    const preco = parseFloat(document.getElementById("preco").value);
     const cor = document.getElementById("cor").value;
-    const autonomia = document.getElementById("autonomia").value;
-    const capacidadeTanque = document.getElementById("capacidadeTanque").value;
-    const imagemURL = document.getElementById("imagem").value;
+    const autonomia = parseInt(document.getElementById("autonomia").value);
+    const capacidadeTanque = parseInt(document.getElementById("capacidadeTanque").value);
+    const imagemURL = document.getElementById("imagemURL").value;
 
     // Instanciar a um novo objeto, passando os valores pedidos no construtor
-    const Veiculo = new veiculo();
+    const Veiculo = new veiculo(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL);
+
+    // Adicionar veículo a lista """Banco de dados"""
+    veiculos.push(Veiculo)
+
+    // Atualiza a exibição
+    console.log(veiculos);
+    
+    // Limpa os campos do formulário
+    document.getElementById("veiculoForm").reset()
 }
 
 // veiculos.push(new veiculo("Fiat", "Uno", 60000, "Branco", 16,90,"www.url.com"));
