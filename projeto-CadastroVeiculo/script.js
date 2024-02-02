@@ -2,14 +2,18 @@
 #Parte 1:
     - Crie uma classe Veiculo
     - Adicione as propriedades: marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL
-    - Adicione um metodo calcularDistanciaMaxia, que retornará a autonomia * capacidadeTanque
+    - Adicione um metodo calcularDistanciaMaxima, que retornará a autonomia * capacidadeTanque
     - Adicione um metodo exibirDetalhes, que retornará os dados concatenados de:
         * marca, modelo, cor, preco.toFixed(2)
 
-    #Parte 2:
-        - Crie uma função cadastrarVeiculo
-*/
+#Parte 2:
+    - Crie uma função cadastrarVeiculo
 
+#Exercício:
+    - Adicione ao veículo um anoDeFabricacao
+    - Adicione uma função que receba como parametro um ano qualquer, e retorne se 
+    o veículo é isento de IPVA naquele ano.
+*/
 class Veiculo {
     constructor(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL) {
         this.marca = marca;
@@ -22,20 +26,19 @@ class Veiculo {
     }
 
     calcularDistanciaMaxima() {
-        distanciaMaxima = this.autonomia * this.capacidadeTanque;
-        return distanciaMaxima;
+        return this.autonomia * this.capacidadeTanque;
     }
 
     exibirDetalhes() {
-        return `${this.marca} - ${this.modelo} - ${this.cor} - R$ ${this.preco.tofixed(2)} - ${this.calcularDistanciaMaxima()}`;
+        return `${this.marca} ${this.modelo} - ${this.cor} - R$ ${this.preco.toFixed(2)}`;
     }
 }
 
-const veiculos = [];
+let veiculos = [];
 
 // Função para cadastrar veículo
 function cadastrarVeiculo() {
-    // Recebimento de valores do HTML
+    //recebimento de valores do HTML
     const marca = document.getElementById("marca").value;
     const modelo = document.getElementById("modelo").value;
     const preco = parseFloat(document.getElementById("preco").value);
@@ -44,22 +47,21 @@ function cadastrarVeiculo() {
     const capacidadeTanque = parseInt(document.getElementById("capacidadeTanque").value);
     const imagemURL = document.getElementById("imagemURL").value;
 
-    // Instanciar a um novo objeto, passando os valores pedidos no construtor
-    const Veiculo = new Veiculo(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL);
+    // Instanciar um novo objeto veículo, passando os valores pedidos no construtor
+    const veiculo = new Veiculo(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL);
 
-    // Adicionar veículo a lista """Banco de dados"""
-    veiculos.push(Veiculo)
+    // Adicionar o veículo a nossa lista "banco de dados"
+    veiculos.push(veiculo);
 
     // Atualiza a exibição
-    exibirVeiculos();
+    exibirVeiculos()
 
-    // Limpa os campos do formulário
+    // Limpar formulário
     document.getElementById("veiculoForm").reset();
 }
 
 function exibirVeiculos() {
     const veiculosList = document.getElementById("veiculosList");
-
     // Limpar a lista antes de exibir os veículos
     veiculosList.innerHTML = "";
 
@@ -71,18 +73,18 @@ function exibirVeiculos() {
     }
 }
 
-function criarVeiculoCard(Veiculo) {
+function criarVeiculoCard(veiculo) {
     const veiculoCard = document.createElement("div");
     veiculoCard.className = "veiculo-card";
 
     const imagemVeiculo = document.createElement("img");
-    imagemVeiculo.src = Veiculo.imagemURL;
-    imagemVeiculo.className = "veiculo-imagem"
-    imagemVeiculo.alt = `${Veiculo.marca} ${Veiculo.modelo}`;
+    imagemVeiculo.src = veiculo.imagemURL;
+    imagemVeiculo.className = "veiculo-imagem";
+    imagemVeiculo.alt = `${veiculo.marca} ${veiculo.modelo}`;
     veiculoCard.appendChild(imagemVeiculo);
 
     const detalhesVeiculo = document.createElement("div");
-    detalhesVeiculo.textContent = Veiculo.exibirDetalhes() + ` - Distância máxima: ${Veiculo.calcularDistanciaMaxima()} km`;
+    detalhesVeiculo.textContent = veiculo.exibirDetalhes() + ` - Distância máxima: ${veiculo.calcularDistanciaMaxima()} km`;
     veiculoCard.appendChild(detalhesVeiculo);
 
     return veiculoCard;
