@@ -10,7 +10,7 @@
         - Crie uma função cadastrarVeiculo
 */
 
-class veiculo {
+class Veiculo {
     constructor(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL) {
         this.marca = marca;
         this.modelo = modelo;
@@ -45,7 +45,7 @@ function cadastrarVeiculo() {
     const imagemURL = document.getElementById("imagemURL").value;
 
     // Instanciar a um novo objeto, passando os valores pedidos no construtor
-    const Veiculo = new veiculo(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL);
+    const Veiculo = new Veiculo(marca, modelo, preco, cor, autonomia, capacidadeTanque, imagemURL);
 
     // Adicionar veículo a lista """Banco de dados"""
     veiculos.push(Veiculo)
@@ -65,7 +65,25 @@ function exibirVeiculos() {
 
     for (let i = 0; i < veiculos.length; i++) {
         const veiculoItem = document.createElement("li");
-        veiculoItem.innerHTML = veiculos[i].modelo;
+        const veiculoCard = criarVeiculoCard(veiculos[i]);
+        veiculosList.appendChild(veiculoCard);
         veiculosList.appendChild(veiculoItem);
     }
+}
+
+function criarVeiculoCard(Veiculo) {
+    const veiculoCard = document.createElement("div");
+    veiculoCard.className = "veiculo-card";
+
+    const imagemVeiculo = document.createElement("img");
+    imagemVeiculo.src = Veiculo.imagemURL;
+    imagemVeiculo.className = "veiculo-imagem"
+    imagemVeiculo.alt = `${Veiculo.marca} ${Veiculo.modelo}`;
+    veiculoCard.appendChild(imagemVeiculo);
+
+    const detalhesVeiculo = document.createElement("div");
+    detalhesVeiculo.textContent = Veiculo.exibirDetalhes() + ` - Distância máxima: ${Veiculo.calcularDistanciaMaxima()} km`;
+    veiculoCard.appendChild(detalhesVeiculo);
+
+    return veiculoCard;
 }
