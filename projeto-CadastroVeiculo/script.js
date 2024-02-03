@@ -31,10 +31,14 @@ class Veiculo {
     }
 
     exibirDetalhes() {
-        return `${this.marca} ${this.modelo} - ${this.cor} - R$ ${this.preco.toFixed(2)}`;
+        if (this.ehIsentoIPVA()) {
+            return `${this.marca} ${this.modelo} - ${this.cor} - R$ ${this.preco.toFixed(2)} \n ISENTO DE IPVA!`;
+        } else {
+            return `${this.marca} ${this.modelo} - ${this.cor} - R$ ${this.preco.toFixed(2)}`;
+        }
     }
 
-    ehIsentoIPVA(){
+    ehIsentoIPVA() {
         const dataAtual = new Date;
         const anoAtual = dataAtual.getFullYear();
 
@@ -58,8 +62,7 @@ function cadastrarVeiculo() {
 
     // Instanciar um novo objeto veículo, passando os valores pedidos no construtor
     const veiculo = new Veiculo(marca, modelo, preco, cor, autonomia, capacidadeTanque, anoDeFabricacao, imagemURL);
-    console.log(veiculo.ehIsentoIPVA());
-  
+
     // Adicionar o veículo a nossa lista "banco de dados"
     veiculos.push(veiculo);
 
