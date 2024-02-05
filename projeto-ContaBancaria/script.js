@@ -21,6 +21,18 @@ class Conta {
         this.numero = numero;
         this.saldo = saldo;
     }
+
+    sacar(valorSaque) {
+        return true;
+    }
+
+    depositar(valorDeposito) {
+        return true;
+    }
+
+    transferir(valorTransferencia, cliente) {
+        return true;
+    }
 }
 
 class ContaCorrente {
@@ -28,11 +40,21 @@ class ContaCorrente {
         super(cliente, numero, saldo);
         this.limiteChequeEspecial = limiteChequeEspecial;
     }
+
+    sacar(valorSaque) {
+        super(valorSaque);
+        return true;
+    }
 }
 
 class ContaPoupanca {
-    constructor(cliente, numero, saldo) {
+    constructor(cliente, numero, saldo, taxaRendimento) {
         super(cliente, numero, saldo);
+        this.taxaDeRendimento = taxaRendimento;
+    }
+
+    aplicarRendimento() {
+
     }
 }
 
