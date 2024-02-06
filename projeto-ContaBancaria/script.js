@@ -23,31 +23,57 @@ class Conta {
     }
 
     sacar(valorSaque) {
-        return true;
+        /* 
+        Verificar se o saldo é maior ou igual ao valor
+         e verificar se o valor é maior que 0
+        retornar true em caso de sucesso, false caso não
+        */
+        if (valorSaque >= this.saldo && valorSaque > 0) {
+            console.log();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     depositar(valorDeposito) {
-        return true;
+        //se o valor for maior que zero, soma o valor ao saldo
+        if (valorDeposito > 0) {
+            this.saldo += valorDeposito;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    transferir(valorTransferencia, cliente) {
-        return true;
+    transferir(valorTransferencia, conta) {
+        /* 
+        se consigo sacar dessa conta
+        posso depositar na conta destino
+        */
+        if (valorTransferencia <= this.saldo && valorTransferencia > 0) {
+            this.saldo -= valorTransferencia;
+            conta += valorTransferencia;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
-class ContaCorrente {
+class ContaCorrente extends Conta {
     constructor(cliente, numero, saldo, limiteChequeEspecial) {
         super(cliente, numero, saldo);
         this.limiteChequeEspecial = limiteChequeEspecial;
     }
 
     sacar(valorSaque) {
-        super(valorSaque);
+        super.sacar(valorSaque);
         return true;
     }
 }
 
-class ContaPoupanca {
+class ContaPoupanca extends Conta {
     constructor(cliente, numero, saldo, taxaRendimento) {
         super(cliente, numero, saldo);
         this.taxaDeRendimento = taxaRendimento;
@@ -57,4 +83,7 @@ class ContaPoupanca {
 
     }
 }
+
+let contas = [];
+let clientes = [];
 
