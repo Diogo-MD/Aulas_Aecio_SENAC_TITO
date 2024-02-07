@@ -87,19 +87,61 @@ class ContaPoupanca extends Conta {
 let contas = [];
 let clientes = [];
 
-// let clienteA = new Cliente("Fulano", "1234567890");
-// clientes.push(clienteA);
+function cadastrarCliente() {
+    // Pegar dados da tela
+    const nome = document.getElementById("nomeCliente").value;
+    const cpf = document.getElementById("cpfCliente").value;
 
-// let clienteB = new Cliente("Beltrano", "0987654321");
-// clientes.push(clienteB);
+    // Instanciar um novo cliente
+    const cliente = new Cliente(nome, cpf);
 
-// let contaX = new ContaCorrente(clienteA, 123, 100, 150);
-// contas.push(contaX);
+    // Adicionar este cliente a uma lista de cliente
+    clientes.push(cliente);
 
-// let contaY = new ContaPoupanca(clienteB, 111, 100, 0.01);
-// contas.push(contaY);
+    atualizarSeletorClientes()
+}
 
-// contaY.transferir(50, contaX);
+function atualizarSeletorClientes(){
+    const seletorClientes = document.getElementById("cliente")
 
-// console.log("Conta Y: ", contaY);
-// console.log("Conta X: ", contaX);
+    seletorClientes.innerHTML = ""
+
+    clientes.forEach(cliente =>{
+        const option = document.createElement("option");
+        option.value = cliente.cpf;
+        option.textContent = cliente.nome;
+        seletorClientes.appendChild(option);
+    });
+
+}
+
+
+function cadastrarConta() {
+    // Pegar os dados da tela
+    const numero = parseInt(document.getElementById("numero").value);
+    const saldo = parseFloat(document.getElementById("saldo").value);
+    const tipoConta = document.getElementById("tipoConta").value;
+
+    // Identificar o cliente selecionado na lista de clientes
+    const clienteSelecionado = document.getElementById("cliente").value;
+    const cliente = clientes.find(c => c.cpf === clienteSelecionado);
+
+    // Adicionar uma nova, a partir do tipo de conta selecionada
+    // (Poderia ser feito com ELSE IF, porém com SWITCH fica mais semântico)
+
+    let conta;
+    switch (tipoConta) {
+        case "ContaCorrente":
+            conta = new ContaCorrente(cliente, numero, saldo, 100);
+            break;
+        case "ContaPoupanca":
+            conta = new ContaPoupanca(cliente, numero, saldo, 100);
+            break;
+        default:
+            alert("Tipo selecionado invalido");
+            break;
+    }
+
+    contas.push(conta);
+
+}
