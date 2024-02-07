@@ -1,13 +1,3 @@
-/*
-    Ordem para fazer uma boa estrutura orientação a objetos
-
-    1º Fazer a etrutura de classe básica
-
-    2º Definir as relações entre as classes
-
-    3º Determinar os constructors e supers
-*/
-
 class Cliente {
     constructor(nome, cpf) {
         this.nome = nome;
@@ -23,37 +13,31 @@ class Conta {
     }
 
     sacar(valorSaque) {
-        /* 
-        Verificar se o saldo é maior ou igual ao valor
-         e verificar se o valor é maior que 0
-        retornar true em caso de sucesso, false caso não
-        */
-        if (valorSaque <= this.saldo && valorSaque > 0) {
+        if (this.saldo >= valorSaque && valorSaque > 0) {
             this.saldo -= valorSaque;
-            console.log();
             return true;
         }
+        return false;
     }
 
     depositar(valorDeposito) {
-        //se o valor for maior que zero, soma o valor ao saldo
         if (valorDeposito > 0) {
             this.saldo += valorDeposito;
             return true;
         }
+        return false;
     }
 
-    transferir(valorTransferencia, conta) {
-        //se consigo sacar dessa conta
-        //posso depositar na conta destino
+    transferir(valorTransferencia, contaDestino) {
         if (this.sacar(valorTransferencia)) {
-            conta.depositar(valorTransferencia)
+            contaDestino.depositar(valorTransferencia)
             return true;
         }
+        return false;
     }
 
     toString() {
-        return `Numero: ${this.numero} - Saldo: ${this.saldo} - Cliente: ${clie}`
+        return `Numero: ${this.numero} - Saldo: ${this.saldo} - Cliente: ${this.cliente.nome}`
     }
 }
 
@@ -79,12 +63,12 @@ class ContaCorrente extends Conta {
 class ContaPoupanca extends Conta {
     constructor(cliente, numero, saldo, taxaRendimento) {
         super(cliente, numero, saldo);
-        this.taxaDeRendimento = taxaRendimento;
+        this.taxaRendimento = taxaRendimento;
     }
 
     aplicarRendimento() {
         // Rendimento = valor do saldo multiplicado com a porcentagem de taxa de rendimento
-        this.saldo += this.saldo * this.taxaDeRendimento;
+        this.saldo += this.saldo * this.taxaRendimento;
     }
 }
 
@@ -102,9 +86,9 @@ function cadastrarCliente() {
     // Adicionar este cliente a uma lista de cliente
     clientes.push(cliente);
 
-    atualizarSeletorClientes()
+    atualizarSeletorClientes();
     exibirClientes();
-    
+
     document.getElementById("clienteForm").reset();
 }
 
@@ -122,9 +106,9 @@ function exibirClientes() {
 }
 
 function atualizarSeletorClientes() {
-    const seletorClientes = document.getElementById("cliente")
+    const seletorClientes = document.getElementById("cliente");
 
-    seletorClientes.innerHTML = ""
+    seletorClientes.innerHTML = "";
 
     clientes.forEach(cliente => {
         const option = document.createElement("option");
@@ -132,7 +116,6 @@ function atualizarSeletorClientes() {
         option.textContent = cliente.nome;
         seletorClientes.appendChild(option);
     });
-
 }
 
 
@@ -158,7 +141,7 @@ function cadastrarConta() {
             conta = new ContaPoupanca(cliente, numero, saldo, 100);
             break;
         default:
-            alert("Tipo selecionado invalido");
+            alert("Tipo selecionado inválido");
             break;
     }
 
@@ -192,4 +175,3 @@ function criarContaCard(conta) {
 
     return contaCard;
 }
-
