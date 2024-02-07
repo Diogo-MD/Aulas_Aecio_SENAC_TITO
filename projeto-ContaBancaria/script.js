@@ -51,6 +51,10 @@ class Conta {
             return true;
         }
     }
+
+    toString() {
+        return `Numero: ${this.numero} - Saldo: ${this.saldo} - Cliente: ${clie}`
+    }
 }
 
 class ContaCorrente extends Conta {
@@ -87,19 +91,105 @@ class ContaPoupanca extends Conta {
 let contas = [];
 let clientes = [];
 
-// let clienteA = new Cliente("Fulano", "1234567890");
-// clientes.push(clienteA);
+function cadastrarCliente() {
+    // Pegar dados da tela
+    const nome = document.getElementById("nomeCliente").value;
+    const cpf = document.getElementById("cpfCliente").value;
 
-// let clienteB = new Cliente("Beltrano", "0987654321");
-// clientes.push(clienteB);
+    // Instanciar um novo cliente
+    const cliente = new Cliente(nome, cpf);
 
-// let contaX = new ContaCorrente(clienteA, 123, 100, 150);
-// contas.push(contaX);
+    // Adicionar este cliente a uma lista de cliente
+    clientes.push(cliente);
 
-// let contaY = new ContaPoupanca(clienteB, 111, 100, 0.01);
-// contas.push(contaY);
+    atualizarSeletorClientes()
+    exibirClientes();
+    
+    document.getElementById("clienteForm").reset();
+}
 
-// contaY.transferir(50, contaX);
+// Exibir clientes cadastrados
+function exibirClientes() {
+    const clientesList = document.getElementById("clientesList");
+    // Limpar a lista antes de exibir os clientes
+    clientesList.innerHTML = "";
 
-// console.log("Conta Y: ", contaY);
-// console.log("Conta X: ", contaX);
+    for (let i = 0; i < clientes.length; i++) {
+        const clienteItem = document.createElement("li");
+        clienteItem.textContent = `Nome: ${clientes[i].nome} - CPF: ${clientes[i].cpf}`;
+        clientesList.appendChild(clienteItem);
+    }
+}
+
+function atualizarSeletorClientes() {
+    const seletorClientes = document.getElementById("cliente")
+
+    seletorClientes.innerHTML = ""
+
+    clientes.forEach(cliente => {
+        const option = document.createElement("option");
+        option.value = cliente.cpf;
+        option.textContent = cliente.nome;
+        seletorClientes.appendChild(option);
+    });
+
+}
+
+
+function cadastrarConta() {
+    // Pegar os dados da tela
+    const numero = parseInt(document.getElementById("numero").value);
+    const saldo = parseFloat(document.getElementById("saldo").value);
+    const tipoConta = document.getElementById("tipoConta").value;
+
+    // Identificar o cliente selecionado na lista de clientes
+    const clienteSelecionado = document.getElementById("cliente").value;
+    const cliente = clientes.find(c => c.cpf === clienteSelecionado);
+
+    // Adicionar uma nova, a partir do tipo de conta selecionada
+    // (Poderia ser feito com ELSE IF, porém com SWITCH fica mais semântico)
+
+    let conta;
+    switch (tipoConta) {
+        case "ContaCorrente":
+            conta = new ContaCorrente(cliente, numero, saldo, 100);
+            break;
+        case "ContaPoupanca":
+            conta = new ContaPoupanca(cliente, numero, saldo, 100);
+            break;
+        default:
+            alert("Tipo selecionado invalido");
+            break;
+    }
+
+    contas.push(conta);
+
+    exibirContas();
+
+    document.getElementById("contaForm").reset();
+}
+
+function exibirContas() {
+    const contasList = document.getElementById("contasList");
+    // Limpar a lista antes de exibir as contas
+    contasList.innerHTML = "";
+
+    for (let i = 0; i < contas.length; i++) {
+        const contaItem = document.createElement("li");
+        const contaCard = criarContaCard(contas[i]);
+        contasList.appendChild(contaCard);
+        contasList.appendChild(contaItem);
+    }
+}
+
+function criarContaCard(conta) {
+    const contaCard = document.createElement("div");
+    contaCard.className = "conta-card";
+
+    const detalhesConta = document.createElement("div");
+    detalhesConta.textContent = conta.toString();
+    contaCard.appendChild(detalhesConta);
+
+    return contaCard;
+}
+
